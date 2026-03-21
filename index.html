@@ -296,6 +296,90 @@
     margin-top: 6px;
   }
 
+  /* REGLAS ACORDEON */
+  .rules-section { margin-top: 48px; }
+  .rules-toggle {
+    width: 100%;
+    background: var(--dark);
+    border: none;
+    border-radius: 14px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .rules-toggle:hover { background: var(--dark-mid); }
+  .rules-toggle-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .rules-toggle-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .rules-toggle-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .rules-toggle-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 1px;
+  }
+  .rules-arrow {
+    color: var(--gold);
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
+  .rules-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .rules-body.open { max-height: 800px; }
+  .rules-arrow.open { transform: rotate(180deg); }
+  .rules-inner {
+    background: #fff;
+    border: 1px solid rgba(201,168,76,0.15);
+    border-top: none;
+    border-radius: 0 0 14px 14px;
+    padding: 24px 28px;
+  }
+  .rules-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .rules-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  .rule-bullet {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
   /* FOOTER */
   footer {
     text-align: center;
@@ -467,7 +551,61 @@
     </div>
   </div>
 
+
+  <!-- REGLAS -->
+  <div class="rules-section">
+    <button class="rules-toggle" onclick="toggleRules()" id="rulesToggle">
+      <div class="rules-toggle-left">
+        <div class="rules-toggle-icon">📋</div>
+        <div>
+          <div class="rules-toggle-text">Reglas del San</div>
+          <div class="rules-toggle-sub">Toca para ver las normas de participación</div>
+        </div>
+      </div>
+      <div class="rules-arrow" id="rulesArrow">▾</div>
+    </button>
+    <div class="rules-body" id="rulesBody">
+      <div class="rules-inner">
+        <ul class="rules-list">
+          <li>
+            <div class="rule-bullet"></div>
+            <span>Los pagos se realizan durante las <strong>24 horas siguientes</strong> luego del pago de la quincena (15 y 30) de cada mes.</span>
+          </li>
+          <li>
+            <div class="rule-bullet"></div>
+            <span>Al momento de realizar el pago, el <strong>comprobante debe compartirse</strong> con la persona que recibe el pago según el calendario compartido al inicio del san.</span>
+          </li>
+          <li>
+            <div class="rule-bullet"></div>
+            <span>La fecha de inicio y fin del san están en el <strong>cuadro calendario compartido</strong>, así como en el grupo de Skype como parte del nombre.</span>
+          </li>
+          <li>
+            <div class="rule-bullet"></div>
+            <span>En caso de que el pago no pueda realizarse en las 24 horas siguientes, se debe <strong>informar a la persona</strong> que recibe ese turno y realizarlo lo más pronto posible.</span>
+          </li>
+          <li>
+            <div class="rule-bullet"></div>
+            <span>El monto de la cuota es <strong>consensuado con todos los participantes</strong>. Una vez confirmada es definitiva y única hasta que finalice el san.</span>
+          </li>
+          <li>
+            <div class="rule-bullet"></div>
+            <span>El total a recibir es igual a la <strong>cuota × cantidad de participantes</strong>, menos la cantidad de números que el participante posea. Ej: con 2 números pagas RD$5,000 y recibes RD$30,000.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </main>
+
+<script>
+  function toggleRules() {
+    const body = document.getElementById('rulesBody');
+    const arrow = document.getElementById('rulesArrow');
+    body.classList.toggle('open');
+    arrow.classList.toggle('open');
+  }
+</script>
 
 <footer>
   <strong>El San Millonario</strong> &nbsp;·&nbsp; Cuota quincenal: RD$2,500 &nbsp;·&nbsp; Organizado con confianza
